@@ -1,0 +1,252 @@
+// C++ code
+//Se definen los pines
+//PULSADORES
+#define pulsador1 A0
+#define pulsador2 A2
+#define pulsador3 A1
+//DISPLAY
+#define A 12
+#define B 13
+#define C 9
+#define D 8
+#define E 7
+#define F 11
+#define G 10
+//LEDS
+#define LED_ROJO 4
+#define LED_VERDE 5
+//SE FIRMAN LAS FUNCIONES
+void EncenderDisplay(int numero);
+int contador = 0;
+void BotonEmergencia();
+bool Flag = true;
+
+void setup()
+{
+  pinMode(pulsador1, INPUT);
+  pinMode(pulsador2, INPUT);
+  pinMode(pulsador3, INPUT);
+  pinMode(A, OUTPUT);
+  pinMode(B, OUTPUT);
+  pinMode(C, OUTPUT);
+  pinMode(D, OUTPUT);
+  pinMode(E, OUTPUT);
+  pinMode(F, OUTPUT);
+  pinMode(G, OUTPUT);
+  pinMode(LED_ROJO, OUTPUT);
+  pinMode(LED_VERDE, OUTPUT);	
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  BotonEmergencia();
+  if (digitalRead(pulsador1) == LOW)
+  {
+    if(Flag == true)
+    {
+      if(contador == 9)
+      {
+        contador = 9;
+        digitalWrite(LED_ROJO, HIGH);
+        EncenderDisplay(contador);
+        Serial.print("Usted se encuentra en el piso ");
+        Serial.println(contador);
+      }
+      else
+      {
+
+        contador++;
+        digitalWrite(LED_ROJO, LOW);
+        digitalWrite(LED_VERDE, HIGH);
+        EncenderDisplay(contador);
+        digitalWrite(LED_VERDE, LOW);
+        digitalWrite(LED_ROJO, HIGH);
+        Serial.print("Usted se encuentra en el piso ");
+        Serial.println(contador);
+      }
+    }
+  }
+  else if(digitalRead(pulsador2) == LOW)
+  {
+    if(Flag == true)
+    {
+      if(contador == 0)
+      {
+        contador = 0;
+        digitalWrite(LED_ROJO, HIGH);
+        EncenderDisplay(contador);
+        Serial.print("Usted se encuentra en el piso ");
+        Serial.println(contador);
+      }
+      else
+      {
+        contador--;
+        digitalWrite(LED_ROJO, LOW);
+        digitalWrite(LED_VERDE, HIGH);
+        EncenderDisplay(contador);
+        digitalWrite(LED_VERDE, LOW);
+        digitalWrite(LED_ROJO, HIGH);
+        Serial.print("Usted se encuentra en el piso ");
+        Serial.println(contador);
+      }
+    }
+  }
+  
+}
+
+void BotonEmergencia()
+{
+  while(digitalRead(pulsador3) == LOW)
+  {               
+    EncenderDisplay(contador);
+    digitalWrite(LED_ROJO, HIGH);
+    digitalWrite(LED_VERDE, LOW);
+    Serial.print("Boton de emergencia, se encuentra parado en el piso ");
+    Serial.println(contador);
+    delay(10);
+    Flag = false;
+    if(digitalRead(pulsador3) == LOW)
+    {
+      Flag = true;
+      Serial.print("PROCEDA");
+      delay(1000);
+      digitalWrite(LED_ROJO, LOW);
+      break;
+    }
+  }
+}
+
+void EncenderDisplay(int numero){
+ switch(numero)
+  {
+  	case 1:
+  		digitalWrite(B, HIGH);
+    	digitalWrite(C, HIGH);
+  		delay(3000);
+    	digitalWrite(B, LOW);
+    	digitalWrite(C , LOW);
+    	break;
+    case 2:
+        digitalWrite(A, HIGH);
+    	digitalWrite(B, HIGH);
+        digitalWrite(D, HIGH);
+    	digitalWrite(E, HIGH);
+        digitalWrite(G, HIGH);
+  		delay(3000);
+    	digitalWrite(A, LOW);
+    	digitalWrite(B, LOW);
+    	digitalWrite(D, LOW);
+        digitalWrite(E, LOW);
+    	digitalWrite(G, LOW);
+    	break;
+        
+    case 3:
+    	digitalWrite(A, HIGH);
+    	digitalWrite(B, HIGH);  		
+        digitalWrite(C, HIGH);
+    	digitalWrite(D, HIGH);
+        digitalWrite(G, HIGH);
+  		delay(3000);
+    	digitalWrite(A, LOW);  		
+    	digitalWrite(B, LOW);  		
+    	digitalWrite(C, LOW);  		
+        digitalWrite(D, LOW);  		
+    	digitalWrite(G, LOW);
+    	break;
+    case 4:
+    	digitalWrite(B, HIGH);
+    	digitalWrite(C, HIGH);
+        digitalWrite(F, HIGH);
+        digitalWrite(G, HIGH);
+  		delay(3000);
+    	digitalWrite(B, LOW);
+    	digitalWrite(C, LOW);
+        digitalWrite(F, LOW);
+    	digitalWrite(G, LOW);
+    	break;
+    case 5:
+    	digitalWrite(A, HIGH);
+    	digitalWrite(C, HIGH);
+        digitalWrite(D, HIGH);
+    	digitalWrite(F, HIGH);
+        digitalWrite(G, HIGH);
+  		delay(3000);
+    	digitalWrite(A, LOW);
+    	digitalWrite(C, LOW);
+    	digitalWrite(D, LOW);
+        digitalWrite(F, LOW);
+    	digitalWrite(G, LOW);
+    	break;
+    case 6:
+    	digitalWrite(A, HIGH);
+        digitalWrite(C, HIGH);
+    	digitalWrite(D, HIGH);
+    	digitalWrite(E, HIGH);
+    	digitalWrite(F, HIGH);
+        digitalWrite(G, HIGH);
+  		delay(3000);
+    	digitalWrite(A, LOW);
+    	digitalWrite(C, LOW);
+    	digitalWrite(D, LOW);
+        digitalWrite(E, LOW);
+    	digitalWrite(F, LOW);
+    	digitalWrite(G, LOW);
+    	break;
+    case 7:
+    	digitalWrite(A, HIGH);
+    	digitalWrite(B, HIGH);
+        digitalWrite(C, HIGH);
+  		delay(3000);
+    	digitalWrite(A, LOW);
+    	digitalWrite(B, LOW);
+    	digitalWrite(C, LOW);
+    	break;
+    case 8:
+    	digitalWrite(A, HIGH);
+    	digitalWrite(B, HIGH);
+        digitalWrite(C, HIGH);
+        digitalWrite(D, HIGH);
+    	digitalWrite(E, HIGH);
+        digitalWrite(F, HIGH);
+        digitalWrite(G, HIGH);
+    	delay(3000);
+    	digitalWrite(A, LOW);
+    	digitalWrite(B, LOW);
+        digitalWrite(C, LOW);
+    	digitalWrite(D, LOW);
+        digitalWrite(E, LOW);
+    	digitalWrite(F, LOW);
+    	break;
+    case 9:
+    	digitalWrite(A, HIGH);
+    	digitalWrite(B, HIGH);
+        digitalWrite(C, HIGH);
+    	digitalWrite(D, HIGH);
+        digitalWrite(F, HIGH);
+        digitalWrite(G, HIGH);
+  		delay(3000);
+    	digitalWrite(A, LOW);
+    	digitalWrite(B, LOW);
+    	digitalWrite(C, LOW);
+        digitalWrite(D, LOW);
+    	digitalWrite(F, LOW);
+        digitalWrite(G, LOW);
+    	break;
+    case 0:
+    	digitalWrite(A, HIGH);
+    	digitalWrite(B, HIGH);
+        digitalWrite(C, HIGH);
+    	digitalWrite(D, HIGH);
+        digitalWrite(E, HIGH);
+    	digitalWrite(F, HIGH);
+  		delay(3000);
+    	digitalWrite(A, LOW);
+    	digitalWrite(B, LOW);
+    	digitalWrite(C, LOW);
+        digitalWrite(D, LOW);
+    	digitalWrite(E, LOW);
+    	digitalWrite(F, LOW);
+    	break;
+  }
+}
