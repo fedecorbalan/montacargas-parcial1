@@ -81,7 +81,6 @@ void EncenderDisplay(int numero){
       digitalWrite(E, LOW);
     	digitalWrite(G, LOW);
     	break;
-        
     case 3:
     	digitalWrite(A, HIGH);
     	digitalWrite(B, HIGH);  		
@@ -158,6 +157,7 @@ void EncenderDisplay(int numero){
     	digitalWrite(D, LOW);
       digitalWrite(E, LOW);
     	digitalWrite(F, LOW);
+      digitalWrite(G, LOW);
     	break;
     case 9:
     	digitalWrite(A, HIGH);
