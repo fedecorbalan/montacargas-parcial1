@@ -103,7 +103,8 @@ void BotonEmergencia()
     EncenderDisplay(contador);
     digitalWrite(LED_ROJO, HIGH);
     digitalWrite(LED_VERDE, LOW);
-    Serial.print("Boton de emergencia, se encuentra parado en el piso ");
+    Serial.print("Boton de emergencia, se 
+encuentra parado en el piso ");
     Serial.println(contador);
     delay(10);
     Flag = false;
