@@ -1,3 +1,4 @@
+```cpp
 // C++ code
 //Se definen los pines
 //PULSADORES
@@ -250,3 +251,4 @@ void EncenderDisplay(int numero){
     	break;
   }
 }
+```
